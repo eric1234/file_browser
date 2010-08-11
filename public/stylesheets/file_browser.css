@@ -1,6 +1,6 @@
-#upload-forms {width: 25em; padding: 1em}
-#upload-forms label {float: left; width: 8em; font-weight: bold}
-#upload-forms input[type=text], #upload-forms input[type=file] {width: 15em}
+#upload-forms {width: 32em; padding: 1em}
+#upload-forms label {float: left; width: 10em; font-weight: bold}
+#upload-forms input[type=text], #upload-forms input[type=file] {width: 20em}
 #directory-index, #directory-index li {margin: 0; padding: 0; list-style-type: none}
 #directory-index {margin: 1em 0}
 #directory-index li {
