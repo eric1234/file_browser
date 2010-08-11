@@ -1,0 +1,47 @@
+<h1><%= @current_directory %></h1>
+
+<fieldset id="upload-forms">
+  <legend>Add New Content</legend>
+
+  <% uploaded_file_form_tag do %>
+    <label for="file_data">Upload File</label>
+    <%= file_field_tag :data, :id => 'file_data' %>
+    <%= submit_tag 'Upload' %>
+  <% end %>
+  
+  <% uploaded_file_form_tag do %>
+    <label for="directory_data">Create Directory</label>
+    <%= text_field_tag :data, nil, :id => 'directory_data' %>
+    <%= submit_tag 'Create' %>
+  <% end %>
+</fieldset>
+
+<%= link_to_up "&laquo; Return to ?" %>
+
+<ul id="directory-index">
+  <% for directory in @directories %>
+    <li>
+      <%= image_tag "file_browser/folder.png", :alt => '' %>
+      <%= link_to_directory directory %>
+      <%= link_to_destroy directory %>
+    </li>
+  <% end %>
+  <% for file in @uploaded_files %>
+    <li>
+      <%= image_tag "file_browser/#{file.general_type}.png", :alt => '' %>
+      <%= file %>
+      <%= link_to_uploaded_file file, "Download" %>
+      <%= link_to_destroy file.path %>
+    </li>
+  <% end %>
+</ul>
+
+<% if params[:integration] %>
+  <% content_for :file_browser_footer do %>
+    <%= javascript_include_tag params[:integration] %>
+  <% end %>
+  <div id="file-browser-actions">
+    <%= submit_tag 'Choose File', :type => 'button', :id => 'select-file-trigger' %>
+    <%= link_to 'Cancel', '#', :id => 'cancel-file-select' %>
+  </div>
+<% end %>

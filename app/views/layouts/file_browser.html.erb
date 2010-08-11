@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>File Browser</title>
+    <%= stylesheet_link_tag 'file_browser', :media => :all %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js', 'file_browser' %>
+    <%= yield :file_browser_footer %>
+  </body>
+</html>

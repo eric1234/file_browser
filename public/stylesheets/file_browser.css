@@ -1,0 +1,26 @@
+#upload-forms {width: 25em; padding: 1em}
+#upload-forms label {float: left; width: 8em; font-weight: bold}
+#upload-forms input[type=text], #upload-forms input[type=file] {width: 15em}
+#directory-index, #directory-index li {margin: 0; padding: 0; list-style-type: none}
+#directory-index {margin: 1em 0}
+#directory-index li {
+  float: left;
+  height: 175px;
+  width: 150px;
+  border: thin solid gray;
+  background-color: #E8E8E8;
+  text-align: center;
+  margin: 0.5em 1em;
+  position: relative;
+}
+#directory-index li.selected {background-color: #D2D2D2}
+#directory-index form {
+  position: absolute;
+  top: 0; right: 0;
+  display: none
+}
+#directory-index li:hover {visibility: visible} /* IE hack to enable :hover */
+#directory-index li:hover form {display: block}
+#directory-index a {color: black; display: block}
+#up-dir {margin: 1em; display: block}
+#file-browser-actions {clear: both}
