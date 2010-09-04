@@ -1,5 +1,4 @@
-DESCRIPTION
------------
+= DESCRIPTION
 
 A rails plugin that provides a basic file browser. The primary use
 case for this plugin is:
@@ -20,8 +19,7 @@ Possible Future Features:
 * Allow basic image manipulation (resize, crop, etc.)
 * File upload progress monitoring (for large files)
 
-SETUP
------
+= SETUP
 
 In your environment.rb add:
 
@@ -47,8 +45,7 @@ managing your files via the web.
 See example_integrations directory for how to integrate with 3rd party
 tools such as CKEditor.
 
-CONFIGURATION
--------------
+= CONFIGURATION
 
 By default the app will use the "file_browser" layout. Obviously your
 can override that in your application if you want. If you want it to
@@ -60,3 +57,7 @@ that it yields to the symbol :file_browser_footer.
 You can have multiple storage repositories that can be registered and
 accessed. See FileBrowser#storages for more info.
 
+= CREDIT
+
+This gem was developed by Eric Anderson (http://pixelwareinc.com) while
+developing projects under Red Tusk Studios (http://redtusk.com).
