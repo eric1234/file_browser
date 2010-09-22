@@ -36,7 +36,7 @@ namespace :file_browser do
     end
     
     def app_path(path)
-      returning(Pathname.getwd.realpath.join(path)) do |p|
+      Pathname.getwd.realpath.join(path).tap do |p|
         p.mkpath
       end
     end

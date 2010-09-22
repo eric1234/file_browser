@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 
 desc 'Prepare testing by creating test app'
 task :test_app do
-  sh "rails -q -m test/test_app_template.rb test/test_app" unless
+  sh "rails _2.3.9_ -q -m test/test_app_template.rb test/test_app" unless
     File.exists? 'test/test_app'
 end
 
