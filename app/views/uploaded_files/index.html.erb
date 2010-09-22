@@ -18,30 +18,23 @@
 
 <%= link_to_up "&laquo; Return to ?" %>
 
-<ul id="directory-index">
+<ul id="directory-index" class="<%= 'clickable' if params[:integration] %>">
   <% for directory in @directories %>
-    <li>
+    <li class="directory">
       <%= image_tag "file_browser/folder.png", :alt => '' %>
       <%= link_to_directory directory %>
       <%= link_to_destroy directory %>
     </li>
   <% end %>
   <% for file in @uploaded_files %>
-    <li>
+    <li class="file">
       <%= image_tag "file_browser/#{file.general_type}.png", :alt => '' %>
-      <%= file %>
-      <%= link_to_uploaded_file file, "Download" %>
+      <%= link_to_uploaded_file file %>
       <%= link_to_destroy file.path %>
     </li>
   <% end %>
 </ul>
 
-<% if params[:integration] %>
-  <% content_for :file_browser_footer do %>
-    <%= javascript_include_tag params[:integration] %>
-  <% end %>
-  <div id="file-browser-actions">
-    <%= submit_tag 'Choose File', :type => 'button', :id => 'select-file-trigger' %>
-    <%= link_to 'Cancel', '#', :id => 'cancel-file-select' %>
-  </div>
-<% end %>
+<% content_for :file_browser_footer do %>
+  <%= javascript_include_tag params[:integration] %>
+<% end if params[:integration] %>

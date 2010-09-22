@@ -14,8 +14,4 @@ Event.observe(document, 'dom:loaded', function() {
     window.close();
   });
 
-  Event.observe(document, 'file_browser:cancel', function() {
-    window.close();
-  });
-
 });

@@ -27,10 +27,6 @@ Event.observe(document, 'dom:loaded', function() {
     alert(event.memo+' selected');
   });
 
-  Event.observe(document, 'file_browser:cancel', function() {
-    alert('Selection canceled');
-  });
-
 });
 JS
 
