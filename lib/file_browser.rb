@@ -15,4 +15,12 @@ module FileBrowser
   mattr_accessor :storages
   self.storages = {}
 
+  # If set to true then the file browser provides no way to create
+  # directories or add files. So you can only select files. You can
+  # still add files via the drop functionality. This is not a security
+  # issue but just simplifying the interface so the file browser is
+  # as simple as possible.
+  mattr_accessor :select_only
+  self.select_only = false
+
 end
