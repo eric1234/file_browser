@@ -18,12 +18,13 @@ Possible Future Features:
   (images only, only certain extensions, etc.)
 * Allow basic image manipulation (resize, crop, etc.)
 * File upload progress monitoring (for large files)
+* Icon previews (mainly for images show thumbnail for icon)
 
 = SETUP
 
-In your environment.rb add:
+In your Gemfile add:
 
-    config.gem 'file_browser'
+    gem 'file_browser'
 
 In an initializer add:
 
@@ -33,11 +34,8 @@ In an initializer add:
 Change the above path to be wherever you want to write files. Also make
 sure that directory is writable by the application.
 
-Next run `rake file_browser:assets:copy` to copy the necessary
-javascript, CSS and images to your public directory. You can feel free
-to update those files. The copy only happens when you run the rake task.
-Note that you need to put `require 'file_browser/rails_tasks'` in your
-Rakefile for the rake tasks to be included in your app.
+Copy the assets to your public directory. This will likely later be
+automated as Rails adds support.
 
 Finally point your browser to /local/uploaded_files/index and start
 managing your files via the web.

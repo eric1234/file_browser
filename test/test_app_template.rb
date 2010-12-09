@@ -1,19 +1,8 @@
-lib 'test_gem_locator.rb', <<FILE
-class TestGemLocator < Rails::Plugin::Locator
-  def plugins
-    Rails::Plugin.new(File.join(File.dirname(__FILE__), *%w(.. .. ..)))
-  end
-end
-FILE
-
-lib 'tasks/file_browser_tasks.rake', <<FILE
-require File.join(File.dirname(__FILE__), *%w(.. .. .. .. lib file_browser rails_tasks))
-FILE
-
 environment <<CONFIG
-require 'test_gem_locator'
-config.plugin_locators << TestGemLocator
+  require File.join(File.dirname(__FILE__), *%w(.. .. .. lib file_browser.rb))
 CONFIG
+
+gem 'ruby-debug'
 
 initializer 'file_browser_config.rb', <<REGISTER
 FileBrowser.storages[:local] =
@@ -29,5 +18,3 @@ Event.observe(document, 'dom:loaded', function() {
 
 });
 JS
-
-rake 'file_browser:assets:copy'

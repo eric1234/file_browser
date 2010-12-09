@@ -4,13 +4,13 @@
   <fieldset id="upload-forms">
     <legend>Add New Content</legend>
   
-    <% uploaded_file_form_tag do %>
+    <%= uploaded_file_form_tag do %>
       <label for="file_data">Upload File</label>
       <%= file_field_tag :data, :id => 'file_data' %>
       <%= submit_tag 'Upload' %>
     <% end %>
     
-    <% uploaded_file_form_tag do %>
+    <%= uploaded_file_form_tag do %>
       <label for="directory_data">Create Directory</label>
       <%= text_field_tag :data, nil, :id => 'directory_data' %>
       <%= submit_tag 'Create' %>

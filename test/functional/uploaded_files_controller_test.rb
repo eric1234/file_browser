@@ -165,6 +165,11 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert !dest.exist?
   end
 
+  def setup
+    # Somehow this is getting cleared so reset it for testing
+    FileBrowser.storages[:local] = FilesystemStorage.new storage_path
+  end
+
   private
 
   def storage_path
