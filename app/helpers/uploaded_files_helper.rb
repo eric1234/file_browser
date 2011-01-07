@@ -20,8 +20,19 @@ module UploadedFilesHelper
   end
 
   def link_to_uploaded_file(file, label=file.to_s)
-    url = file.public_path || uploaded_file_path(:path => to_parts(file.path))
-    link_to label, url.to_s
+    link_to label, path_to_uploaded_file(file)
+  end
+
+  def path_to_uploaded_file(file)
+    if file.public_path
+      if FileBrowser.resize && defined?(AssetProcess) && (file.general_type == 'image')
+        file.public_path + FileBrowser.resize
+      else
+        file.public_path
+      end
+    else
+      uploaded_file_path :path => to_parts(file.path)
+    end.to_s
   end
 
   def uploaded_file_form_tag(&blk)
@@ -35,6 +46,14 @@ module UploadedFilesHelper
 
   def to_parts(path)
     path.to_s.split('/').reject &:blank?
+  end
+
+  def icon_for(file)
+    if defined?(AssetProcess) && file.public_path && (file.general_type == 'image')
+      (file.public_path+'pad/128x128').to_s
+    else
+      "file_browser/#{file.general_type}.png"
+    end
   end
 
 end

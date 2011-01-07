@@ -31,7 +31,7 @@ class UploadedFile
   }
 
   def initialize(path, mime_type='application/octet-stream', public_path=nil, &blk) # :nodoc:
-    @path = path
+    @path = path.to_s
     @mime_type = mime_type
     @public_path = public_path
     @retrieve = blk

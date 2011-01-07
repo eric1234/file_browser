@@ -1,10 +1,8 @@
-<% content_for :file_browser_footer do
-  path = @uploaded_file.public_path ||
-    uploaded_file_path(:path => to_parts(@uploaded_file.path)) %>
+<% content_for :file_browser_footer do %>
   <%= javascript_include_tag params[:integration] %>
   <%= javascript_tag %Q{
     Event.observe(document, 'dom:loaded', function() {
-      document.fire('file_browser:select', '#{path.to_s}');
+      document.fire('file_browser:select', '#{path_to_uploaded_file @uploaded_file}');
     });
   } %>
 <% end %>

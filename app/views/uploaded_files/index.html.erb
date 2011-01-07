@@ -30,7 +30,7 @@
   <% end %>
   <% for file in @uploaded_files %>
     <li class="file">
-      <%= image_tag "file_browser/#{file.general_type}.png", :alt => '' %>
+      <%= image_tag icon_for(file), :alt => '' %>
       <%= link_to_uploaded_file file %>
       <%= link_to_destroy file.path %>
     </li>

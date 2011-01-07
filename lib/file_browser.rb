@@ -23,6 +23,8 @@ module FileBrowser
   mattr_accessor :select_only
   self.select_only = false
 
+  mattr_accessor :resize
+
   class Engine < Rails::Engine
   end
 
