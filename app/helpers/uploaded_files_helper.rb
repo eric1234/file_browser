@@ -26,7 +26,7 @@ module UploadedFilesHelper
   def path_to_uploaded_file(file)
     if file.public_path
       if FileBrowser.resize && defined?(AssetProcess) && (file.general_type == 'image')
-        file.public_path + FileBrowser.resize
+        file.public_path.to_s + '.resized/' + FileBrowser.resize
       else
         file.public_path
       end
@@ -50,7 +50,7 @@ module UploadedFilesHelper
 
   def icon_for(file)
     if defined?(AssetProcess) && file.public_path && (file.general_type == 'image')
-      (file.public_path+'pad/128x128').to_s
+      file.public_path.to_s + '.resized/pad/128x128'
     else
       "file_browser/#{file.general_type}.png"
     end
