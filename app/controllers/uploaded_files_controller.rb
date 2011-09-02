@@ -4,8 +4,8 @@ class UploadedFilesController < ApplicationController
 
   # Will display all files in the given directory
   def index
-    params[:path] = ['.'] if params[:path].blank?
-    @path = Pathname.new params[:path].join '/'
+    params[:path] = '.' if params[:path].blank?
+    @path = Pathname.new params[:path]
     @current_directory = @path.basename.to_s
     @current_directory = 'Root Directory' if @current_directory == '.'
 
@@ -17,7 +17,7 @@ class UploadedFilesController < ApplicationController
   # Will stream a specific file out. This should only be used if
   # the file does not have a public_path.
   def show
-    uploaded_file = @storage[Pathname.new params[:path].join '/']
+    uploaded_file = @storage[Pathname.new params[:path]]
     if uploaded_file
       send_data uploaded_file.stream.read, :filename => uploaded_file.to_s
     else
@@ -32,11 +32,11 @@ class UploadedFilesController < ApplicationController
     params[:data] = params[:upload] if params.has_key? :upload # For CKEditor
     if params[:data].respond_to?(:read)
       filename = File.basename(params[:data].original_filename)
-      filename = Pathname.new(params[:path].join('/')).join filename
+      filename = Pathname.new(params[:path] || '').join filename
       @storage[filename] = params[:data]
       @uploaded_file = @storage[filename]
     else
-      path = Pathname.new(params[:path].join('/')).join params[:data]
+      path = Pathname.new(params[:path] || '').join params[:data]
       @storage.mkdir path
     end
     redirect_to :back unless params[:dropbox]
@@ -44,7 +44,7 @@ class UploadedFilesController < ApplicationController
 
   # Removes a specific file
   def destroy
-    @storage.destroy params[:path].join('/')
+    @storage.destroy params[:path]
     redirect_to :back
   end
 

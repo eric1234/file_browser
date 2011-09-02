@@ -3,7 +3,7 @@ require 'test_helper'
 class UploadedFilesControllerTest < ActionController::TestCase
 
   test 'root directory' do
-    get :index, :path => [], :storage => 'local'
+    get :index, :storage => 'local'
 
     assert_response :success
     assert_select 'h1', 'Root Directory'
@@ -20,7 +20,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
   end
 
   test 'empty directory' do
-    get :index, :path => ['empty'], :storage => 'local'
+    get :index, :path => 'empty', :storage => 'local'
 
     assert_response :success
     assert_select 'h1', 'empty'
@@ -29,7 +29,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
   end
 
   test 'subdirectory' do
-    get :index, :path => ['dir1'], :storage => 'local'
+    get :index, :path => 'dir1', :storage => 'local'
 
     assert_response :success
     assert_select 'h1', 'dir1'
@@ -42,7 +42,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
   end
 
   test 'sub of sub' do
-    get :index, :path => ['dir1', 'subdir'], :storage => 'local'
+    get :index, :path => 'dir1/subdir', :storage => 'local'
 
     assert_response :success
     assert_select 'h1', 'subdir'
@@ -51,21 +51,21 @@ class UploadedFilesControllerTest < ActionController::TestCase
   end
 
   test 'show (root directory)' do
-    get :show, :path => ['file1.txt'], :storage => 'local'
+    get :show, :path => 'file1.txt', :storage => 'local'
 
     assert_response :success
     assert_equal 'File 1', @response.body
   end
 
   test 'show (subdir)' do
-    get :show, :path => ['dir1', 'subfile1.txt'], :storage => 'local'
+    get :show, :path => 'dir1/subfile1.txt', :storage => 'local'
 
     assert_response :success
     assert_equal 'File in subdirectory.', @response.body
   end
 
   test 'show (404)' do
-    get :show, :path => ['foo.txt'], :storage => 'local'
+    get :show, :path => 'foo.txt', :storage => 'local'
     assert_response :not_found
   end
 
@@ -75,7 +75,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert !dest.exist?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index'
-    post :create, :path => [], :data => 'foo', :storage => 'local'
+    post :create, :data => 'foo', :storage => 'local'
 
     assert dest.directory?
     FileUtils.rmdir dest if dest.exist?
@@ -87,7 +87,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert !dest.exist?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index/dir1'
-    post :create, :path => ['dir1'], :data => 'foo', :storage => 'local'
+    post :create, :path => 'dir1', :data => 'foo', :storage => 'local'
 
     assert dest.directory?
     FileUtils.rmdir dest if dest.exist?
@@ -101,7 +101,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index'
     file = StringIO.new('Test content')
     def file.original_filename; 'foo.txt' end
-    post :create, :path => [], :data => file, :storage => 'local'
+    post :create, :data => file, :storage => 'local'
 
     assert dest.exist?
     FileUtils.rm dest if dest.exist?
@@ -115,7 +115,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index/dir1'
     file = StringIO.new('Test content')
     def file.original_filename; 'foo.txt' end
-    post :create, :path => ['dir1'], :data => file, :storage => 'local'
+    post :create, :path => 'dir1', :data => file, :storage => 'local'
 
     assert dest.exist?
     FileUtils.rm dest if dest.exist?
@@ -127,7 +127,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert dest.exist?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index'
-    delete :destroy, :path => ['foo.txt'], :storage => 'local'
+    delete :destroy, :path => 'foo.txt', :storage => 'local'
 
     assert !dest.exist?
   end
@@ -138,7 +138,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert dest.exist?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index/dir1'
-    delete :destroy, :path => ['dir1', 'foo.txt'], :storage => 'local'
+    delete :destroy, :path => 'dir1/foo.txt', :storage => 'local'
 
     assert !dest.exist?
   end
@@ -149,7 +149,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert dest.directory?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index'
-    delete :destroy, :path => ['bar'], :storage => 'local'
+    delete :destroy, :path => 'bar', :storage => 'local'
 
     assert !dest.exist?
   end
@@ -160,7 +160,7 @@ class UploadedFilesControllerTest < ActionController::TestCase
     assert dest.directory?
 
     @request.env["HTTP_REFERER"] = '/local/uploaded_files/index/dir1'
-    delete :destroy, :path => ['dir1', 'bar'], :storage => 'local'
+    delete :destroy, :path => 'dir1/bar', :storage => 'local'
 
     assert !dest.exist?
   end

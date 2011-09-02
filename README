@@ -9,7 +9,7 @@ case for this plugin is:
 Guiding Principals:
 
 * No database required
-* Multiple backends (filesystem, S3, etc.) - Filesystem only currently
+* Pluggable backends (filesystem, S3, etc.) - Filesystem only currently
 * Pluggable integration with 3rd party products such as CKEditor
 
 Possible Future Features:
