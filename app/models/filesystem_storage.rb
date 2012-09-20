@@ -70,6 +70,6 @@ class FilesystemStorage
   private
 
   def path2key(path)
-    path.to_s.sub(@path, '').sub /^\//, ''
+    path.to_s.sub(@path.to_s, '').sub /^\//, ''
   end
 end
