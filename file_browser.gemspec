@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'file_browser'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.homepage = 'http://wiki.github.com/eric1234/file_browser/'
   s.author = 'Eric Anderson'
   s.email = 'eric@pixelwareinc.com'
