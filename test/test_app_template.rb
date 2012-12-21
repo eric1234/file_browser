@@ -2,7 +2,7 @@ environment <<CONFIG
   require File.join(File.dirname(__FILE__), *%w(.. .. .. lib file_browser.rb))
 CONFIG
 
-gem 'ruby-debug'
+gem 'debugger'
 
 initializer 'file_browser_config.rb', <<REGISTER
 FileBrowser.storages[:local] =

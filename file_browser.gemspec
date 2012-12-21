@@ -1,16 +1,16 @@
 Gem::Specification.new do |s|
   s.name = 'file_browser'
-  s.version = '0.1.2'
+  s.version = '0.1.4'
   s.homepage = 'http://wiki.github.com/eric1234/file_browser/'
   s.author = 'Eric Anderson'
   s.email = 'eric@pixelwareinc.com'
-  s.add_dependency 'rails'
+  s.add_dependency 'rails', '> 3.1'
   s.files = Dir['**/*'].reject do |f|
     f =~ /^test/ || f == 'file_browser.gemspec' || f =~ /^pkg/
   end
   s.has_rdoc = true
-  s.extra_rdoc_files << 'README'
-  s.rdoc_options << '--main' << 'README'
+  s.extra_rdoc_files << 'README.rdoc'
+  s.rdoc_options << '--main' << 'README.rdoc'
   s.summary = 'A Rails-gem for managing files'
   s.description = <<-DESCRIPTION
     Provides a web-based UI to manage a filesystem. Useful as an
