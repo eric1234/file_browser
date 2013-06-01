@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       file = storage[Pathname.new params[:path]]
       app.fetch_file(file.stream.path).thumb params[:size]
     end
-    match ':storage/uploaded_files/resized/:size/(*path)' => endpoint,
+    get ':storage/uploaded_files/resized/:size/(*path)' => endpoint,
       :as => :resized_uploaded_file, :format => false
   end
 
