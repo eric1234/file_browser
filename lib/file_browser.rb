@@ -26,9 +26,7 @@ module FileBrowser
   mattr_accessor :resize
 
   class Engine < Rails::Engine
-    initializer "file_browser.configure.assets" do |app|
-      app.config.assets.precompile += %w(file_browser.js file_browser.css)
-    end
+    config.assets.precompile += %w(file_browser.js file_browser.css)
   end
 
 end
