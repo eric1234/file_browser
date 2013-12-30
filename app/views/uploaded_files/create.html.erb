@@ -1,8 +1,9 @@
 <% content_for :file_browser_footer do %>
   <%= javascript_include_tag params[:integration] %>
-  <%= javascript_tag %Q{
-    Event.observe(document, 'dom:loaded', function() {
-      document.fire('file_browser:select', '#{path_to_uploaded_file @uploaded_file}');
+  <%= javascript_tag %Q!
+    jQuery(document).ready(function($) {
+      $(document).trigger('file_browser:select',
+        '#{path_to_uploaded_file @uploaded_file}');
     });
-  } %>
+  ! %>
 <% end %>

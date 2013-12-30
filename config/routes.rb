@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   # For image preview and resize on serve
   if defined? Dragonfly
-    app = Dragonfly[:file_browser].configure_with :imagemagick
-    endpoint = app.endpoint do |params, app|
+    Dragonfly.logger = Rails.logger
+    endpoint = Dragonfly.app.endpoint do |params, app|
       storage = FileBrowser.storages[params[:storage].to_sym]
       file = storage[Pathname.new params[:path]]
       app.fetch_file(file.stream.path).thumb params[:size]

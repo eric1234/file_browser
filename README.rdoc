@@ -18,11 +18,12 @@ Possible Future Features:
   (images only, only certain extensions, etc.)
 * Allow basic image manipulation (resize, crop, etc.)
 * File upload progress monitoring (for large files)
-* Icon previews (mainly for images show thumbnail for icon)
 
 = SETUP
 
-In your Gemfile add:
+First, your app needs to be using jQuery as it's JavaScript framework.
+This dependency might be removed at some future point but it is
+required for now. In your Gemfile add:
 
     gem 'file_browser'
 
@@ -34,14 +35,20 @@ In an initializer add:
 Change the above path to be wherever you want to write files. Also make
 sure that directory is writable by the application.
 
-Copy the assets to your public directory. This will likely later be
-automated as Rails adds support.
-
 Finally point your browser to /local/uploaded_files/index and start
 managing your files via the web.
 
-See example_integrations directory for how to integrate with 3rd party
-tools such as CKEditor.
+= CKEditor Integration
+
+CKEditor integration is provided out of the box. When configuring
+CKEditor make sure to provide the following attributes:
+
+    filebrowserBrowseUrl: '/local/uploaded_files/select/ck_browser',
+    filebrowserUploadUrl: '/local/uploaded_files/drop/ck_browser',
+
+This assumes your storage is named "local", if you name it something
+else then change the above configuration. Then add "ck_browser" to
+your asset pipeline.
 
 = CONFIGURATION
 
@@ -49,7 +56,7 @@ By default the app will use the "file_browser" layout. Obviously your
 can override that in your application if you want. If you want it to
 use the same layout as your main layout simply symlink
 file_browser.html.erb to your application.html.erb file. If you use
-your own layout make sure that it includes the prototype library and
+your own layout make sure that it includes the jQuery library and
 that it yields to the symbol :file_browser_footer.
 
 You can have multiple storage repositories that can be registered and

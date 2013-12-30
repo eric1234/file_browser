@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = 'file_browser'
-  s.version = '0.2.0'
+  s.version = '0.3.0'
   s.homepage = 'http://wiki.github.com/eric1234/file_browser/'
   s.author = 'Eric Anderson'
   s.email = 'eric@pixelwareinc.com'
-  s.add_dependency 'rails', '>= 4.0.0.rc1'
+  s.add_dependency 'rails', '>= 4.0.0'
   s.files = Dir['**/*'].reject do |f|
     f =~ /^test/ || f == 'file_browser.gemspec' || f =~ /^pkg/
   end
